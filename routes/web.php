@@ -4,6 +4,8 @@ use App\Http\Controllers\CashRegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PosController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
@@ -51,6 +53,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/cash-register/open', [CashRegisterController::class, 'open'])->name('cash_register.open');
     Route::post('/cash-register/{cashRegister}/close', [CashRegisterController::class, 'close'])->name('cash_register.close');
     Route::get('/cash-register/history', [CashRegisterController::class, 'history'])->name('cash_register.history');
+
+    // POS Terminal
+    Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
+    Route::get('/pos/search', [PosController::class, 'search'])->name('pos.search');
+    Route::post('/pos/checkout', [PosController::class, 'checkout'])->name('pos.checkout');
+
+    // Sales & Orders Management
+    Route::get('/orders/due', [OrderController::class, 'dueOrders'])->name('orders.due');
+    Route::get('/orders/{order}/receipt', [OrderController::class, 'receipt'])->name('orders.receipt');
+    Route::get('/orders/{order}/invoice', [OrderController::class, 'invoice'])->name('orders.invoice');
+    Route::resource('orders', OrderController::class)->only(['index', 'show']);
 });
 
 require __DIR__.'/auth.php';
