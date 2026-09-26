@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CashRegisterController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -38,6 +40,17 @@ Route::middleware('auth')->group(function () {
 
     // Purchases & Stock Inflow
     Route::resource('purchases', PurchaseController::class)->except(['edit', 'update', 'destroy']);
+
+    // Customers & Due Ledger
+    Route::get('/customers/ledger', [CustomerController::class, 'ledger'])->name('customers.ledger');
+    Route::post('/customers/{customer}/collect-due', [CustomerController::class, 'collectDue'])->name('customers.collect_due');
+    Route::resource('customers', CustomerController::class)->except(['create', 'show', 'edit']);
+
+    // Cash Register & Shifts
+    Route::get('/cash-register', [CashRegisterController::class, 'index'])->name('cash_register.index');
+    Route::post('/cash-register/open', [CashRegisterController::class, 'open'])->name('cash_register.open');
+    Route::post('/cash-register/{cashRegister}/close', [CashRegisterController::class, 'close'])->name('cash_register.close');
+    Route::get('/cash-register/history', [CashRegisterController::class, 'history'])->name('cash_register.history');
 });
 
 require __DIR__.'/auth.php';
