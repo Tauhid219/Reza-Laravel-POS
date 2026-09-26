@@ -4,7 +4,7 @@
   <div class="d-flex align-items-center justify-content-between">
     <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
       <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
-      <span class="d-none d-lg-block">Reza POS</span>
+      <span class="d-none d-lg-block">{{ \App\Models\Setting::get('company_name', 'Reza POS') }}</span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
   </div><!-- End Logo -->

@@ -10,8 +10,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -71,6 +74,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports/profit-loss', [ReportController::class, 'profitLoss'])->name('reports.profit_loss');
     Route::get('/reports/stock', [ReportController::class, 'stock'])->name('reports.stock');
     Route::get('/reports/customer-due', [ReportController::class, 'customerDue'])->name('reports.customer_due');
+
+    // System Administration & Settings (Admin Only)
+    Route::group(['middleware' => ['role:Admin']], function () {
+        Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+        Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
+        Route::resource('users', UserController::class);
+        Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+    });
 });
 
 require __DIR__.'/auth.php';

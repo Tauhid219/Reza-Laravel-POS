@@ -128,14 +128,20 @@
 
     <!-- Header Section -->
     <div class="row align-items-center border-bottom pb-4 mb-4">
-      <div class="col-sm-7">
         <div class="company-logo d-flex align-items-center gap-2">
-          <i class="bi bi-cart4 text-primary"></i> REZA POS & SUPER STORE
+          @if(\App\Models\Setting::get('company_logo') && file_exists(public_path(\App\Models\Setting::get('company_logo'))))
+            <img src="{{ asset(\App\Models\Setting::get('company_logo')) }}" alt="Logo" style="max-height: 40px;">
+          @else
+            <i class="bi bi-cart4 text-primary"></i>
+          @endif
+          {{ \App\Models\Setting::get('company_name', 'REZA POS & SUPER STORE') }}
         </div>
         <p class="text-muted small mb-1 mt-2">
-          House #42, Road #27, Dhanmondi, Dhaka - 1209, Bangladesh<br>
-          <strong>Hotline:</strong> +880 1700-000000 | <strong>Email:</strong> support@rezapos.com<br>
-          <strong>BIN / VAT Reg No:</strong> 001234567-0101
+          {{ \App\Models\Setting::get('company_address', 'House #42, Road #27, Dhanmondi, Dhaka - 1209, Bangladesh') }}<br>
+          <strong>Hotline:</strong> {{ \App\Models\Setting::get('company_phone', '+880 1700-000000') }} | <strong>Email:</strong> {{ \App\Models\Setting::get('company_email', 'support@rezapos.com') }}<br>
+          @if(\App\Models\Setting::get('vat_number'))
+            <strong>BIN / VAT Reg No:</strong> {{ \App\Models\Setting::get('vat_number') }}
+          @endif
         </p>
       </div>
       <div class="col-sm-5 text-sm-end mt-3 mt-sm-0">
@@ -226,7 +232,7 @@
         <div class="p-3 border rounded bg-light mb-3">
           <h6 class="fw-bold text-dark small mb-2"><i class="bi bi-info-circle me-1"></i> Terms & Notes</h6>
           <p class="small text-muted mb-0">
-            {{ $order->note ? $order->note : '1. Thank you for your business. 2. Goods once sold can be replaced within 7 days in undamaged original packaging. 3. Computer-generated invoice; valid without physical stamp.' }}
+            {{ $order->note ? $order->note : \App\Models\Setting::get('invoice_terms', '1. Thank you for your business. 2. Goods once sold can be replaced within 7 days in undamaged original packaging. 3. Computer-generated invoice; valid without physical stamp.') }}
           </p>
         </div>
 

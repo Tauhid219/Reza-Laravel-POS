@@ -202,10 +202,12 @@
   <div class="receipt-container">
 
     <div class="store-header">
-      <div class="store-title">REZA POS & SUPER STORE</div>
-      <div class="store-sub">Dhanmondi 27, Dhaka - 1209, Bangladesh</div>
-      <div class="store-sub">Phone: +880 1700-000000 | info@rezapos.com</div>
-      <div class="store-sub">BIN/VAT Reg: 001234567-0101</div>
+      <div class="store-title">{{ \App\Models\Setting::get('company_name', 'REZA POS & SUPER STORE') }}</div>
+      <div class="store-sub">{{ \App\Models\Setting::get('company_address', 'Dhanmondi 27, Dhaka - 1209, Bangladesh') }}</div>
+      <div class="store-sub">Phone: {{ \App\Models\Setting::get('company_phone', '+880 1700-000000') }} | {{ \App\Models\Setting::get('company_email', 'info@rezapos.com') }}</div>
+      @if(\App\Models\Setting::get('vat_number'))
+        <div class="store-sub">BIN/VAT Reg: {{ \App\Models\Setting::get('vat_number') }}</div>
+      @endif
     </div>
 
     <div class="dashed-line"></div>
@@ -307,9 +309,8 @@
     </div>
 
     <div class="footer-note">
-      <p class="fw-bold">Thank you for your business!</p>
-      <p>Goods once sold can be exchanged within 7 days with this invoice.</p>
-      <p style="margin-top: 4px; font-size: 9px; color: #555;">Powered by Reza Laravel POS</p>
+      <p class="fw-bold">{{ \App\Models\Setting::get('receipt_footer', 'Thank you for your business! Please come again.') }}</p>
+      <p style="margin-top: 4px; font-size: 9px; color: #555;">Powered by {{ \App\Models\Setting::get('company_name', 'Reza Laravel POS') }}</p>
     </div>
 
   </div>
