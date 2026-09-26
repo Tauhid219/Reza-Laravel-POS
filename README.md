@@ -1,59 +1,169 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 Reza Laravel POS
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/assets/img/logo.png" width="120" alt="Reza POS Logo">
 </p>
 
-## About Laravel
+<p align="center">
+  <strong>An Enterprise-Grade, Modern Point of Sale (POS) and Inventory Management System built with Laravel 12 & NiceAdmin Bootstrap 5.</strong>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-12.x-red.svg" alt="Laravel 12">
+  <img src="https://img.shields.io/badge/PHP-8.2%2B-blue.svg" alt="PHP 8.2+">
+  <img src="https://img.shields.io/badge/Database-MySQL-orange.svg" alt="MySQL">
+  <img src="https://img.shields.io/badge/Auth-Breeze-blueviolet.svg" alt="Laravel Breeze">
+  <img src="https://img.shields.io/badge/RBAC-Spatie_Permission-green.svg" alt="Spatie Permission">
+  <img src="https://img.shields.io/badge/Tests-50_passed_/_189_assertions-brightgreen.svg" alt="Tests 50 passed">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License">
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🌟 Key Features
 
-## Learning Laravel
+### 1. 💻 Fast & Intuitive POS Terminal
+- **Live Barcode Scanner Support:** Auto-focus barcode input for instant scan-to-cart workflow.
+- **Dynamic Category Filtering & Search:** Real-time search across products by name or code.
+- **Interactive Cart & Real-Time Math:** Quantity adjustments, flat or percentage item/cart discounts, configurable VAT/Tax, and net pay-able computation.
+- **Hold / Park Sales:** Suspend active customer carts when lines are busy, serve subsequent customers, and retrieve parked sales in one click.
+- **Multi-Method & Split Payments:** Accept Cash, Card, Mobile Banking (bKash/Nagad), Credit (due sales), or Split payments across multiple methods.
+- **Quick Customer Modal:** Register new customers on-the-fly via AJAX without leaving the active sales terminal.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 2. 🧾 Receipts & Invoicing
+- **80mm & 58mm Thermal POS Receipts:** Specially formatted for thermal receipt printers (`@media print` optimized) with store branding, itemized table, cashier info, VAT, change amount, Code-128 barcode SVG, and auto-print trigger (`?print=1`).
+- **Standard A4 Tax Invoices:** Official letterhead, customer billing info, cashier shift details, itemized table, total in words, notes, and authorization signatures.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 3. 📦 Product Catalog & Barcode Generator
+- **Comprehensive Product Management:** Cost price, selling price, units of measure, categories, image uploads, and minimum alert thresholds.
+- **Multi-Label Barcode Sheet Generator:** Select print quantity per item, label height/width, and generate full A4 sheets with printable Code-128 barcodes.
 
-## Laravel Sponsors
+### 4. 🚚 Procurement & Stock Inflow
+- **Suppliers Directory:** Contact info, company address, and procurement history.
+- **Stock Purchases:** Purchase orders automatically increment inventory stock quantities and update average cost price (COGS).
+- **Printable Purchase Bills:** Official bill copy for inward inventory receipts.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 5. 💰 Cash Register Shift Auditing
+- **Shift Management:** Cashiers enter opening cash float before initiating sales.
+- **Real-Time Drawer Tracking:** Tracks real-time cash sales during the active shift.
+- **Closing & Discrepancy Audit:** Cash counting at shift closure calculates variance (exact match, surplus, or cash shortage) for fraud prevention.
+- **Shift History Logs:** Complete historical log of all opened, closed, and audited drawer sessions.
 
-### Premium Partners
+### 6. 👥 Customer Management & Due Ledger
+- **Walk-in & Regular Customers:** Separate default walk-in customer from account-based credit clients.
+- **Customer Due Ledger:** Track outstanding receivables, record partial due settlements, and view payment transaction logs.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 7. 📊 Reports & Business Analytics
+- **Sales Analytics:** Filter by date presets (Today, Yesterday, This Week, This Month, Custom Date Range), view daily trend tables, revenue, gross profit, and payment method mix.
+- **Profit & Loss Statement (COGS):** Calculates real-time Cost of Goods Sold (COGS), gross profit, and margin percentages. Highlights category-wise profit contribution and top 10 most profitable items.
+- **Stock Valuation Report:** Valuation at cost (invested capital) vs valuation at retail (expected turnover), unrealized potential profit, with **Low Stock** and **Out of Stock** alert badges.
+- **Customer Due Receivables Report:** Outstanding market dues and aging analysis.
 
-## Contributing
+### 8. ⚙️ Store Settings & Staff Management
+- **Store Profile:** Company name, hotline, official email, physical address, BIN/VAT registration number, and company logo.
+- **POS Configuration:** Currency symbol (e.g., `৳`), currency code (`BDT`), default VAT %, invoice prefix (`INV-`), and custom receipt footer messages.
+- **Staff Administration (Admin Only):** Create, update, or deactivate cashiers and managers, assign roles, and securely reset passwords.
+- **Roles & Permissions Matrix:** Visual inspection of RBAC permissions across all modules.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 🔐 Default Demo Accounts
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+All accounts are pre-configured via database seeders with the password `password`:
 
-## Security Vulnerabilities
+| Role | Email | Password | Access Scope |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@gmail.com` | `password` | Complete access: POS, Inventory, Finance, Reports, Settings, Staff |
+| **Manager** | `manager@gmail.com` | `password` | Inventory, Procurement, Products, Orders, Reports |
+| **Cashier** | `cashier@gmail.com` | `password` | POS Terminal, Cash Drawer Shifts, Receipts |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🛠️ Technology Stack
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Backend Framework:** [Laravel 12.x](https://laravel.com)
+- **Language:** PHP 8.2+
+- **Database:** MySQL
+- **Authentication:** [Laravel Breeze](https://laravel.com/docs/starter-kits#laravel-breeze) (Blade Stack)
+- **RBAC:** [Spatie Laravel Permission v6](https://spatie.be/docs/laravel-permission)
+- **UI Architecture:** [NiceAdmin](https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/) Bootstrap 5 Template (fully integrated Blade layouts)
+- **Barcode Engine:** [picqer/php-barcode-generator](https://github.com/picqer/php-barcode-generator)
+- **Testing Suite:** Pest PHP & PHPUnit
+
+---
+
+## 🚀 Installation & Setup
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/Tauhid219/Reza-Laravel-POS.git
+cd Reza-Laravel-POS
+```
+
+### 2. Install Dependencies
+```bash
+composer install
+npm install && npm run build
+```
+
+### 3. Environment Configuration
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+Configure your database in `.env`:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=reza_laravel_pos
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 4. Database Migration & Seeding
+Run migrations and populate roles, units, categories, suppliers, sample products with barcodes, settings, and demo users:
+```bash
+php artisan migrate --seed
+```
+
+### 5. Storage Symlink
+```bash
+php artisan storage:link
+```
+
+### 6. Run Application
+```bash
+php artisan serve
+```
+Navigate to `http://127.0.0.1:8000` in your web browser.
+
+---
+
+## 🧪 Automated Test Suite
+
+The application is thoroughly covered by comprehensive feature tests:
+```bash
+php artisan test
+```
+
+### Test Coverage Summary:
+- **Auth:** Authentication, registration, password reset, email verification.
+- **Product & Inventory:** Products CRUD, stock updates, barcode sheets, categories, units.
+- **Procurement:** Suppliers CRUD, purchase orders, stock incrementation.
+- **Cash Register:** Shift opening float, live cash tracking, shift closure, and variance audit.
+- **POS & Checkout:** Atomic checkout transactions, stock deduction, COGS calculation, customer credit updates, thermal receipts, A4 invoices.
+- **Reports:** Sales period filtering, Profit & Loss statement, stock valuation, customer receivables.
+- **Settings & Staff:** Store configuration updates, cashier creation, role protection.
+
+```text
+Tests:    50 passed (189 assertions)
+Duration: ~5s
+```
+
+---
+
+## 📄 License
+
+This open-source software is licensed under the [MIT License](LICENSE).
