@@ -4,6 +4,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +32,12 @@ Route::middleware('auth')->group(function () {
     // Products & Barcodes
     Route::get('/products/barcodes', [ProductController::class, 'printBarcode'])->name('products.barcode');
     Route::resource('products', ProductController::class);
+
+    // Suppliers
+    Route::resource('suppliers', SupplierController::class)->except(['create', 'show', 'edit']);
+
+    // Purchases & Stock Inflow
+    Route::resource('purchases', PurchaseController::class)->except(['edit', 'update', 'destroy']);
 });
 
 require __DIR__.'/auth.php';
