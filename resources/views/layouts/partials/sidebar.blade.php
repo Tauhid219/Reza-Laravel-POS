@@ -159,6 +159,11 @@
             <i class="bi bi-circle"></i><span>Stock & Inventory Value</span>
           </a>
         </li>
+        <li>
+          <a href="{{ url('/reports/customer-due') }}" class="{{ request()->is('reports/customer-due*') ? 'active' : '' }}">
+            <i class="bi bi-circle"></i><span>Customer Due Receivables</span>
+          </a>
+        </li>
       </ul>
     </li>
 

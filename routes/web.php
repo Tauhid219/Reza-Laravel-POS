@@ -9,6 +9,7 @@ use App\Http\Controllers\PosController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +65,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/{order}/receipt', [OrderController::class, 'receipt'])->name('orders.receipt');
     Route::get('/orders/{order}/invoice', [OrderController::class, 'invoice'])->name('orders.invoice');
     Route::resource('orders', OrderController::class)->only(['index', 'show']);
+
+    // Reports & Analytics
+    Route::get('/reports/sales', [ReportController::class, 'sales'])->name('reports.sales');
+    Route::get('/reports/profit-loss', [ReportController::class, 'profitLoss'])->name('reports.profit_loss');
+    Route::get('/reports/stock', [ReportController::class, 'stock'])->name('reports.stock');
+    Route::get('/reports/customer-due', [ReportController::class, 'customerDue'])->name('reports.customer_due');
 });
 
 require __DIR__.'/auth.php';
